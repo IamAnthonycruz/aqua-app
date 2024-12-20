@@ -1,6 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
-
 import { Feather } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { SimpleLineIcons } from "@expo/vector-icons";

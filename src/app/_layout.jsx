@@ -9,13 +9,13 @@ const _layout = () => {
       <Tabs.Screen
         name="index"
         options={{
-          title: "home",
-        }}
-      />
-      <Tabs.Screen
-        name="journal"
-        options={{
-          title: "daily\njournal",
+          title: "",
+          headerStyle: {
+            backgroundColor: "#45c7ff",
+            elevation: 0,
+            shadowOpacity: 0,
+            borderBottomWidth: 0,
+          },
         }}
       />
       <Tabs.Screen

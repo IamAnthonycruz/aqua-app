@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import WaterBottleIcon from "../../assets/svg/WaterBottleIcon";
-import { View, Text, Pressable, Button } from "react-native";
+import { View, Text, Pressable, Dimensions } from "react-native";
 import { StyleSheet } from "react-native";
-import { Animated, Sca } from "react-native";
+import Header from "./Header";
+const { height, width } = Dimensions.get("window");
 const MainScreenDetails = () => {
   const [waterBreak, setWaterBreak] = useState(0);
   const [waterDrunk, setWaterDrunk] = useState(false);
@@ -31,11 +32,12 @@ const MainScreenDetails = () => {
   const formattedNumber = waterBreak.toString().padStart(2, "0");
 
   return (
-    <View>
-      <View style={styles.container}>
-        <View>
+    <View style={styles.container}>
+      <Header waterDrunk={waterDrunk} />
+      <View style={styles.content}>
+        <View style={styles.icon}>
           <Pressable onPress={handlePress}>
-            <WaterBottleIcon width={200} height={450} />
+            <WaterBottleIcon width={200} height={330} />
           </Pressable>
         </View>
         <View style={styles.textContainer}>
@@ -51,9 +53,6 @@ const MainScreenDetails = () => {
         </View>
       </View>
       <View style={styles.footerContainer}>
-        <Text style={styles.statusText}>
-          {!waterDrunk ? "stay hydrated!" : "Now hydrated!"}
-        </Text>
         {undoVisible && (
           <Pressable style={styles.button} onPress={handleUndo}>
             <Text style={styles.undoText}>undo</Text>
@@ -68,21 +67,35 @@ export default MainScreenDetails;
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: -50,
+  },
+
+  content: {
+    marginTop: 150,
     flex: 1,
     justifyContent: "space-between",
     flexDirection: "row",
-    paddingRight: 20,
+    alignItems: "center",
+    width: width,
+    borderWidth: 2,
+    borderRadius: 30,
+    borderColor: "white",
+    backgroundColor: "white",
+  },
+  icon: {
+    position: "relative",
+    top: 60,
   },
   textContainer: {
-    marginTop: 0,
-    paddingLeft: 10,
+    paddingRight: 50,
+    paddingBottom: 50,
   },
   dateText: {
-    fontSize: 20,
+    fontSize: 25,
     color: "#45c7ff",
     fontWeight: "bold",
     marginTop: 150,
-    marginLeft: 8,
+    marginLeft: 10,
     marginBottom: 5,
   },
   waterBreakText: {
@@ -96,26 +109,22 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   footerContainer: {
-    marginTop: 40,
+    marginTop: 20,
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
   },
-  statusText: {
-    fontWeight: "bold",
-    paddingLeft: 30,
-    fontSize: 20,
-  },
   button: {
-    backgroundColor: "white", // Undo button color
-    paddingVertical: 10, // Vertical padding to shape it
-    paddingHorizontal: 20,
-    marginRight: 150, // Horizontal padding to make it wider
-    borderRadius: 20,
+    // Undo button color
+    marginLeft: 40,
+    width: 100,
+    padding: 10, // Horizontal padding to make it wider
+    borderRadius: 10,
     borderColor: "#45c7ff",
-    borderWidth: 2, // Rounded corners
-    marginTop: 20, // Add some space above the button
-    alignSelf: "center", // Center the button horizontally
+    backgroundColor: "white",
+    borderWidth: 2, // Rounded corners // Add some space above the button
+
+    // Center the button horizontally
   },
   undoText: {
     color: "#45c7ff",

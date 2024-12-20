@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const journal = () => {
+const MainScreenText = () => {
   return (
     <View>
-      <Text>journal</Text>
+      <Text>MainScreenText</Text>
     </View>
   );
 };
 
-export default journal;
+export default MainScreenText;
 
 const styles = StyleSheet.create({});
