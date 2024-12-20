@@ -24,6 +24,12 @@ const _layout = () => {
           title: "graph",
         }}
       />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: "settings",
+        }}
+      />
     </Tabs>
   );
 };

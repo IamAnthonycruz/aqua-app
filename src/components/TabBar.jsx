@@ -6,10 +6,13 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 const TabBar = ({ state, descriptors, navigation }) => {
   const icons = {
     index: (props) => (
-      <Ionicons name="water-outline" size={24} color={"black"} {...props} />
+      <Ionicons name="water-outline" size={24} color={"#45c7ff"} {...props} />
     ),
     graph: (props) => (
       <Feather name="bar-chart-2" size={24} color={"black"} {...props} />
+    ),
+    settings: (props) => (
+      <Ionicons name="settings-outline" size={24} color={"black"} {...props} />
     ),
   };
   return (
@@ -56,7 +59,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
             onLongPress={onLongPress}
           >
             {IconComponent
-              ? IconComponent({ color: isFocused ? "black" : "gray" })
+              ? IconComponent({ color: isFocused ? "#45c7ff" : "#bddbe1" })
               : null}
             {!IconComponent && (
               <Text style={{ color: isFocused ? "black" : "gray" }}>
