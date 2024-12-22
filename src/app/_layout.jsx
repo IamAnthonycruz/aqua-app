@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Tabs } from "expo-router";
 import TabBar from "../components/TabBar";
@@ -18,8 +18,19 @@ const _layout = () => {
             shadowOpacity: 0,
             borderBottomWidth: 0,
           },
-          headerLeft: () => <SVGComponent />,
-          headerRight: () => <Profile />,
+          headerLeft: () => (
+            <Pressable onPress={() => alert("pressed")} style={styles.leftIcon}>
+              <SVGComponent />
+            </Pressable>
+          ),
+          headerRight: () => (
+            <Pressable
+              onPress={() => alert("pressed")}
+              style={styles.rightIcon}
+            >
+              <Profile />
+            </Pressable>
+          ),
         }}
       />
       <Tabs.Screen
@@ -43,9 +54,17 @@ export default _layout;
 const styles = StyleSheet.create({
   icon: {
     shadowColor: "red", // Shadow color
-    shadowOffset: { width: 10, height: 30 }, // Offset for shadow
-    shadowOpacity: 0.5, // Shadow transparency
-    shadowRadius: 4, // Shadow blur
-    elevation: 5, // S
+    shadowOffset: { width: 40, height: 50 }, // Offset for shadow
+    shadowOpacity: 10, // Shadow transparency
+    shadowRadius: 100, // Shadow blur
+    elevation: 20, // S
+  },
+  rightIcon: {
+    position: "relative",
+    top: 10,
+  },
+  leftIcon: {
+    position: "relative",
+    top: 15,
   },
 });
