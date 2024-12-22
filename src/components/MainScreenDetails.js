@@ -4,7 +4,8 @@ import { View, Text, Pressable, Dimensions } from "react-native";
 import { StyleSheet } from "react-native";
 import Header from "./Header";
 import { useFonts } from "expo-font";
-import { FontAwesome } from "@expo/vector-icons";
+import { Fontisto } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 const { height, width } = Dimensions.get("window");
 const MainScreenDetails = () => {
   const [waterBreak, setWaterBreak] = useState(0);
@@ -35,6 +36,7 @@ const MainScreenDetails = () => {
   const [fontsLoaded] = useFonts({
     Poppins: require("../../assets/fonts/Poppins-Regular.ttf"),
     PoppinsSemiBold: require("../../assets/fonts/Poppins-SemiBold.ttf"),
+    PoppinsLight: require("../../assets/fonts/Poppins-Light.ttf"),
   });
   return (
     <View style={styles.container}>
@@ -42,11 +44,11 @@ const MainScreenDetails = () => {
       <View style={styles.content}>
         <View style={styles.icon}>
           <Pressable onPress={handlePress}>
-            <WaterBottleIcon width={200} height={330} />
+            <WaterBottleIcon width={200} height={350} />
           </Pressable>
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.dateText}>Today</Text>
+          <Text style={styles.dateText}>today</Text>
           <Text style={styles.waterBreakText}>{formattedNumber}</Text>
           <Text style={styles.reminderText}>water breaks</Text>
         </View>
@@ -55,7 +57,7 @@ const MainScreenDetails = () => {
         {undoVisible && (
           <Pressable style={styles.button} onPress={handleUndo}>
             <Text style={styles.undoText}>
-              <FontAwesome name="undo" size={24} color="#45c7ff" />
+              <Fontisto name="undo" size={24} color="45c7ff" />
             </Text>
           </Pressable>
         )}
@@ -69,6 +71,7 @@ export default MainScreenDetails;
 const styles = StyleSheet.create({
   container: {
     marginTop: -50,
+    backgroundColor: "white",
   },
 
   content: {
@@ -79,52 +82,55 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: width,
     borderWidth: 2,
-    borderRadius: 30,
+    borderRadius: 40,
     borderColor: "white",
     backgroundColor: "white",
+    marginBottom: 0,
   },
   icon: {
     position: "relative",
-    top: 70,
+    top: 90,
   },
   textContainer: {
     paddingRight: 50,
-    paddingBottom: 30,
+    position: "relative",
+    top: 120,
   },
   dateText: {
-    fontSize: 25,
+    fontSize: 30,
     color: "#45c7ff",
     fontWeight: "100",
-    marginTop: 150,
     marginLeft: 20,
-    marginBottom: 5,
+    paddingTop: 40,
     fontFamily: "PoppinsSemiBold",
   },
   waterBreakText: {
-    fontSize: 50,
-    fontWeight: "10",
+    fontSize: 60,
+
     marginLeft: 25,
     fontFamily: "PoppinsBold",
   },
   reminderText: {
     color: "#bddbe1",
-    fontSize: 15,
+    fontSize: 17,
     marginLeft: 15,
-    fontFamily: "Poppins",
+
+    fontFamily: "PoppinsLight",
   },
   footerContainer: {
-    marginTop: 20,
+    marginTop: 0,
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
   },
   button: {
     // Undo button color
-    marginLeft: 40,
+    marginTop: 60,
+    marginLeft: 50,
     width: 100,
     padding: 10, // Horizontal padding to make it wider
     borderRadius: 10,
-    borderColor: "#45c7ff",
+    borderColor: "#bddbe1",
     backgroundColor: "white",
     borderWidth: 2, // Rounded corners // Add some space above the button
 

@@ -5,17 +5,29 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
 const Header = ({ waterDrunk }) => {
   const [fontsLoaded] = useFonts({
-    Poppins: require("../../assets/fonts/Poppins-Medium.ttf"),
-    Lato: require("../../assets/fonts/Lato-Regular.ttf"),
+    PoppinsBold: require("../../assets/fonts/Poppins-Bold.ttf"),
+    Poppins: require("../../assets/fonts/Poppins-Light.ttf"),
   });
 
   return (
     <View style={styles.header}>
       <Text style={styles.statusText}>
-        hi carlos{" "}
+        hi <Text style={{ fontFamily: "PoppinsBold" }}>carlos </Text>
         <MaterialCommunityIcons name="hand-wave" size={24} color="yellow" />
         {"\n"}
-        {!waterDrunk ? "time for a water break!" : "you are now hydrated!"}
+        {!waterDrunk ? (
+          <Text>
+            time for a
+            <Text style={{ fontFamily: "PoppinsBold" }}> water break</Text>
+          </Text>
+        ) : (
+          <Text>
+            <Text>
+              You are now{" "}
+              <Text style={{ fontFamily: "PoppinsBold" }}>hydrated!</Text>
+            </Text>
+          </Text>
+        )}
       </Text>
     </View>
   );
@@ -32,10 +44,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#45c7ff",
   },
   statusText: {
-    fontWeight: "light",
     fontSize: 20,
     color: "white",
-    paddingTop: 30,
+    paddingTop: 40,
     paddingLeft: 20,
     fontFamily: "Poppins",
   },
