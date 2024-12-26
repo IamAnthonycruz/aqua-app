@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import GraphScreenDetails from "../components/GraphScreenDetails";
 
 const graph = () => {
   return (
     <View>
-      <Text>graph</Text>
+      <GraphScreenDetails />
     </View>
   );
 };

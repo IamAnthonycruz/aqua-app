@@ -37,6 +37,7 @@ const MainScreenDetails = () => {
     Poppins: require("../../assets/fonts/Poppins-Regular.ttf"),
     PoppinsSemiBold: require("../../assets/fonts/Poppins-SemiBold.ttf"),
     PoppinsLight: require("../../assets/fonts/Poppins-Light.ttf"),
+    PoppinsBold: require("../../assets/fonts/Poppins-Bold.ttf"),
   });
   return (
     <View style={styles.container}>

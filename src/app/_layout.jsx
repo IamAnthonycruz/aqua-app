@@ -5,7 +5,15 @@ import TabBar from "../components/TabBar";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import SVGComponent from "../../assets/svg/LogoIcon";
 import Profile from "../../assets/svg/profile";
+import { useFonts } from "expo-font";
 const _layout = () => {
+  const [fontsLoaded] = useFonts({
+    Poppins: require("../../assets/fonts/Poppins-Medium.ttf"),
+    PoppinsSemiBold: require("../../assets/fonts/Poppins-SemiBold.ttf"),
+    PoppinsLight: require("../../assets/fonts/Poppins-Light.ttf"),
+    PoppinsBold: require("../../assets/fonts/Poppins-Bold.ttf"),
+    Lato: require("../../assets/fonts/Lato-Regular.ttf"),
+  });
   return (
     <Tabs tabBar={(props) => <TabBar {...props} />}>
       <Tabs.Screen
@@ -36,13 +44,55 @@ const _layout = () => {
       <Tabs.Screen
         name="graph"
         options={{
-          title: "graph",
+          title: "",
+          headerStyle: {
+            backgroundColor: "#45c7ff",
+            elevation: 0,
+            shadowOpacity: 0,
+            borderBottomWidth: 0,
+          },
+          headerLeft: () => (
+            <Text
+              style={{
+                color: "white",
+                paddingTop: 30,
+                paddingLeft: 20,
+                fontSize: 20,
+                fontFamily: "PoppinsSemiBold",
+              }}
+            >
+              dashboard
+            </Text>
+          ),
+          headerRight: () => (
+            <Pressable
+              onPress={() => alert("pressed")}
+              style={styles.rightIcon}
+            >
+              <Profile />
+            </Pressable>
+          ),
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
-          title: "settings",
+          title: "",
+          headerStyle: {
+            backgroundColor: "#45c7ff",
+            elevation: 0,
+            shadowOpacity: 0,
+            borderBottomWidth: 0,
+          },
+          headerLeft: () => <Text>dashboard</Text>,
+          headerRight: () => (
+            <Pressable
+              onPress={() => alert("pressed")}
+              style={styles.rightIcon}
+            >
+              <Profile />
+            </Pressable>
+          ),
         }}
       />
     </Tabs>

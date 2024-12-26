@@ -2,11 +2,17 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { SimpleLineIcons } from "@expo/vector-icons";
 const TabBar = ({ state, descriptors, navigation }) => {
   const icons = {
     index: (props) => (
-      <Ionicons name="water-outline" size={24} color={"#45c7ff"} {...props} />
+      <MaterialCommunityIcons
+        name="water-plus-outline"
+        size={26}
+        color={"#45c7ff"}
+        {...props}
+      />
     ),
     graph: (props) => (
       <Feather name="bar-chart-2" size={24} color={"black"} {...props} />

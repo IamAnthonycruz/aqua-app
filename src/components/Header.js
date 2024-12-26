@@ -38,9 +38,8 @@ export default Header;
 const styles = StyleSheet.create({
   header: {
     position: "absolute",
-    marginTop: 0,
     width: width,
-    height: 300,
+    height: 200,
     backgroundColor: "#45c7ff",
   },
   statusText: {
