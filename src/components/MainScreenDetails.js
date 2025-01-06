@@ -1,25 +1,80 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import WaterBottleIcon from "../../assets/svg/WaterBottleIcon";
-import { View, Text, Pressable, Dimensions } from "react-native";
+import { View, Text, Pressable, Dimensions, Platform } from "react-native";
 import { StyleSheet } from "react-native";
 import Header from "./Header";
 import { useFonts } from "expo-font";
 import { Fontisto } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import supabase from "../supabase-client";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { v4 as uuidv4 } from "uuid";
+
 const { height, width } = Dimensions.get("window");
+
 const MainScreenDetails = () => {
   const [waterBreak, setWaterBreak] = useState(0);
   const [waterDrunk, setWaterDrunk] = useState(false);
   const [undoVisible, setUndoVisible] = useState(false);
+  const [deviceId, setDeviceId] = useState(null);
 
-  const handlePress = () => {
+  // Set up device ID on app load
+  useEffect(() => {
+    const getDeviceId = async () => {
+      let storedDeviceId = await AsyncStorage.getItem("deviceId");
+      if (!storedDeviceId) {
+        storedDeviceId = uuidv4(); // Generate a new device ID
+        await AsyncStorage.setItem("deviceId", storedDeviceId); // Store it
+      }
+      setDeviceId(storedDeviceId);
+    };
+
+    getDeviceId();
+  }, []);
+
+  // Fetch the dnata for the current device once deviceId is available
+  useEffect(() => {
+    if (deviceId) {
+      fetchData();
+    }
+  }, [deviceId]); // Only fetch data once deviceId is set
+
+  const fetchData = async () => {
+    const { data, error, count } = await supabase
+      .from("water_taps")
+      .select("*", { count: "exact" }) // Count the number of water breaks
+      .eq("device_id", deviceId) // Use deviceId for the query
+      .eq("date", new Date().toISOString().split("T")[0]); // Filter by today's date
+    // Expect a single result
+
+    if (error) {
+      console.error("Error fetching water tap data: ", error);
+      return;
+    }
+
+    // Set the number of water breaks from the result
+    setWaterBreak(count ? count : 0);
+  };
+
+  const handlePress = async () => {
     if (!waterDrunk) {
-      setWaterBreak((prev) => prev + 1);
+      setWaterBreak((prev) => prev + 1); // Increment the water breaks
       setWaterDrunk(true);
       setUndoVisible(true);
 
+      const { error } = await supabase.from("water_taps").insert([
+        {
+          device_id: deviceId, // Use deviceId for insertion
+          timestamp: new Date().toISOString(),
+          date: new Date().toISOString().split("T")[0], // Store today's date
+        },
+      ]);
+
+      if (error) {
+        console.error("Error inserting water tap data: ", error);
+      }
+
       // Auto-reset after 5 seconds
-      setTimeout(() => {
+      setTimeout(async () => {
         setWaterDrunk(false);
         setUndoVisible(false);
       }, 5000);
@@ -31,7 +86,6 @@ const MainScreenDetails = () => {
     setWaterDrunk(false);
     setUndoVisible(false);
   };
-
   const formattedNumber = waterBreak.toString().padStart(2, "0");
   const [fontsLoaded] = useFonts({
     Poppins: require("../../assets/fonts/Poppins-Regular.ttf"),
@@ -39,6 +93,7 @@ const MainScreenDetails = () => {
     PoppinsLight: require("../../assets/fonts/Poppins-Light.ttf"),
     PoppinsBold: require("../../assets/fonts/Poppins-Bold.ttf"),
   });
+
   return (
     <View style={styles.container}>
       <Header waterDrunk={waterDrunk} />

@@ -3,7 +3,7 @@ import MainScreenDetails from "../components/MainScreenDetails";
 import WaterBottleIcon from "../../assets/svg/WaterBottleIcon";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-
+import supabase from "../supabase-client";
 export default function Page() {
   return (
     <View style={styles.container}>

@@ -57,7 +57,7 @@ const _layout = () => {
                 color: "white",
                 paddingTop: 30,
                 paddingLeft: 20,
-                fontSize: 20,
+                fontSize: 17,
                 fontFamily: "PoppinsSemiBold",
               }}
             >
@@ -84,7 +84,19 @@ const _layout = () => {
             shadowOpacity: 0,
             borderBottomWidth: 0,
           },
-          headerLeft: () => <Text>dashboard</Text>,
+          headerLeft: () => (
+            <Text
+              style={{
+                fontFamily: "PoppinsSemiBold",
+                color: "white",
+                paddingTop: 30,
+                paddingLeft: 20,
+                fontSize: 20,
+              }}
+            >
+              settings
+            </Text>
+          ),
           headerRight: () => (
             <Pressable
               onPress={() => alert("pressed")}

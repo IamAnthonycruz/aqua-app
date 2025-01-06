@@ -44,7 +44,7 @@ const GraphScreenDetails = () => {
               paddingBottom: 25,
             }}
           >
-            last week
+            this week
           </Text>
           <WeeklyBarChart activeWeek={data[0]} />
         </View>
@@ -52,23 +52,36 @@ const GraphScreenDetails = () => {
           style={{
             flexDirection: "row",
             width: width,
-            paddingLeft: 60,
+
+            paddingLeft: 65,
             height: 100,
-            gap: 70,
-            marginTop: 30,
+            gap: 65,
+            marginTop: 25,
           }}
         >
-          <Text style={{ color: "black", fontFamily: "PoppinsSemiBold" }}>
-            weekly low
+          <Text
+            style={{
+              color: "black",
+              fontFamily: "PoppinsSemiBold",
+              fontSize: 12,
+            }}
+          >
+            lowest daily{"\n"}water breaks
           </Text>
-          <Text style={{ color: "black", fontFamily: "PoppinsSemiBold" }}>
-            weekly high
+          <Text
+            style={{
+              color: "black",
+              fontFamily: "PoppinsSemiBold",
+              fontSize: 12,
+            }}
+          >
+            highest daily {"\n"}water breaks
           </Text>
         </View>
         <View
           style={{
             position: "relative",
-            top: -75,
+            top: -62,
             flex: 1,
             flexDirection: "row",
             width: width,
